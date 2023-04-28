@@ -4,12 +4,12 @@ Regex is a helpful tool for working with text data. It can search for specific p
 
 ## Summary
 
-Regex is like a puzzle made up of different types of characters that represent specific patterns or sequences of text. These characters are used to find, replace, or validate text data in various applications. The way Regex is written depends on the programming language or application being used. By learning the basics of Regex, you can create search patterns that are useful for working with text data. This skill can be valuable for many different jobs that involve working with text.
+A regex for matching a URL
+```
+/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
+```
 
-An example of a complex regex for a 10 digit mobile number
-```
-^\+?(\d{1,3})?[-.\s]?\(?(\d{3})\)?[-.\s]?(\d{3})[-.\s]?(\d{4})$
-```
+This regex is used to find URLs in a string. It looks for patterns that start with "http://" or "https://", followed by a domain name and top-level domain, and optionally followed by a path or query string.
 
 ## Table of Contents
 
@@ -31,11 +31,7 @@ Regex is made up of different parts that define a search pattern. These parts in
 ### Anchors
 Anchors are special characters in Regex that define the position of a pattern in a string. There are two types:
 
-The caret ^ anchor: This matches the start of a line or string. When placed at the beginning of a Regex pattern, it matches the pattern only if it appears at the start of a line or string.
-
-The dollar sign $ anchor: This matches the end of a line or string. When placed at the end of a Regex pattern, it matches the pattern only if it appears at the end of a line or string.
-
-Anchors can be used to make sure that a pattern only matches in specific positions in a string, which can help to make Regex patterns more precise and prevent unwanted matches.
+In the regex, the ^ and $ symbols are anchors. The ^ symbol matches the start of the string and the $ symbol matches the end of the string. Together, they ensure that the regex matches the entire string and not just a part of it.
 
 ### Quantifiers
 In Regex, quantifiers are special characters that determine the number of times a character or group should occur. They specify how many times a character or group should be matched, and can help to make a search pattern more precise. There are several quantifiers in Regex, including:
@@ -85,6 +81,8 @@ In Regex, grouping and capturing are used to combine and extract parts of a matc
 ### Bracket Expressions
 In Regex, square brackets [] are used to match a single character from a set of characters. For instance, [aeiou] matches any vowel character, while [a-z] matches any lowercase letter. The caret ^ at the beginning of a bracket expression negates it. Therefore, [^aeiou] matches any character that is not a vowel. Bracket expressions are useful for matching specific character sets in a string and can be combined with other Regex components to create more complex matching patterns.
 
+The bracket expression in the given regex is [\da-z.-]+, which matches one or more characters that are either digits (\d), lowercase letters (a-z), dots (.), or hyphens (-).
+
 ### Greedy and Lazy Match
 In Regex, greedy and lazy matching are two ways to match patterns in text. Greedy matching tries to match as much text as possible that meets the pattern, while lazy matching tries to match as little text as possible. The difference is shown in the use of + and * quantifiers. The choice of quantifier affects the outcome of the match, and it is important to select the right one when working with complex patterns and large amounts of data.
 
@@ -93,8 +91,6 @@ In regex, boundaries are used to specify the position of a match within a string
 
 ### Back-references
 In regex, back-references allow you to refer to a previously matched group within the same pattern. This is done by putting the group number in parentheses with a backslash, like \1. This lets you match the same text as the original group.
-
-For example, if you use the regex (\w)\1, it will match any consecutive characters that are the same. The parentheses capture a single word character and the \1 back-reference matches the exact same character that was captured.
 
 Back-references are a useful tool for matching and manipulating text in complex ways. They are often used in find-and-replace operations to modify specific parts of a string.
 
