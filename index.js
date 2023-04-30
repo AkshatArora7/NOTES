@@ -50,6 +50,34 @@ app.post("/api/notes", (req, res) => {
   }
 });
 
+app.delete("/api/notes/:id", (req, res) => {
+  db.forEach((element) => {
+    if (element.id === req.params.id) {
+      db.pop(element);
+    }
+  });
+  fs.writeFile(
+    path.join(__dirname, "db/db.json"),
+    JSON.stringify(db),
+    (erroe) => {
+      if (erroe) console.log(erroe);
+      else console.log("Successful");
+    }
+  );
+
+  var response;
+
+  if (req.body && req.body.product) {
+    response = {
+      status: "Successfull",
+      data: req.body,
+    };
+    res.status(201).json(response);
+  } else {
+    res.status(400).json("No data in the body");
+  }
+});
+
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
